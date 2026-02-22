@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>Study Bot</title>
 
 <style>
@@ -13,11 +13,29 @@
     align-items: center;
     background: #0f0f10;
     color: #e5e5e5;
-    font-family: system-ui, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 
   .container {
     text-align: center;
+    max-width: 600px;
+    padding: 0 20px;
+  }
+
+  h1 {
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #d4d4d4;
+  }
+
+  .dev {
+    margin-top: 14px;
+    font-size: 14px;
+    color: #a3a3a3;
   }
 
   .buttons {
@@ -25,9 +43,11 @@
     display: flex;
     gap: 14px;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
-  button, a {
+  button,
+  a.btn {
     padding: 12px 22px;
     font-size: 15px;
     border-radius: 8px;
@@ -37,19 +57,29 @@
     text-decoration: none;
   }
 
-  .primary {
+  button.primary {
     background: #10a37f;
     color: #021b16;
   }
 
-  .secondary {
+  a.secondary {
     background: transparent;
     color: #e5e5e5;
     border: 1px solid #2a2a2a;
   }
 
-  .secondary:hover {
+  a.secondary:hover {
     background: #262626;
+  }
+
+  .doc-link {
+    margin-top: 16px;
+    font-size: 14px;
+  }
+
+  .doc-link a {
+    color: #60a5fa;
+    text-decoration: none;
   }
 
   .hidden {
@@ -84,11 +114,34 @@
 <body>
   <div class="container">
     <h1>🤖 Study Bot</h1>
-    <p>An AI-powered study assistant</p>
+
+    <p>
+      Study Bot is an AI-powered study assistant designed to help students with
+      academic and learning-related questions.
+      <br><br>
+      The chatbot is <b>memory-based</b>, meaning it remembers previous conversations
+      using a database and provides <b>context-aware responses</b> across interactions.
+      Each user is uniquely identified through the browser as it is just a basic mini project!.
+    </p>
+
+    <p class="dev">
+      Developed by <b>Burla Prudhvi Raj</b><br>
+      CSE, Anil Neerukonda Institute of Information Technology (ANITS)
+    </p>
+
+    <div class="doc-link">
+      📄
+      <a
+        href="https://github.com/burlaprudhviraj123/Study-Bot/blob/main/Study_Bot_Documentation.pdf"
+        target="_blank"
+      >
+        View Project Documentation (PDF)
+      </a>
+    </div>
 
     <div class="buttons" id="buttons">
       <button class="primary" onclick="goToChat()">Go to Study Bot</button>
-      <a href="/docs" target="_blank" class="secondary">FastAPI Docs</a>
+      <a href="/docs" target="_blank" class="btn secondary">FastAPI Docs</a>
     </div>
 
     <p id="loading" class="hidden">
