@@ -201,17 +201,64 @@ small {
   color: #6b7280;
 }
 
-/* ================= MOBILE ================= */
+/* ================= MOBILE (PHONE OPTIMIZED) ================= */
 @media (max-width: 768px) {
+
+  /* Overall text scale */
+  body {
+    font-size: 16px;
+  }
+
+  /* Header */
+  .header {
+    height: 64px;
+    padding: 0 12px;
+    font-size: 16px;
+  }
+
+  .icon-btn {
+    font-size: 20px;   /* 👈 bigger icons */
+  }
+
+  .docs-btn {
+    font-size: 15px;
+    padding: 8px 12px;
+  }
+
+  /* Chat area */
   .messages {
-    padding: 16px 12px 84px;
+    padding: 16px 12px 96px;
   }
-  .msg {
-    max-width: 92%;
-    font-size: 14px;
-  }
+
   .inner {
     max-width: 100%;
+  }
+
+  .msg {
+    max-width: 92%;
+    font-size: 15.5px;
+    padding: 12px 14px;
+  }
+
+  /* Input bar */
+  .input {
+    padding: 12px 10px;
+  }
+
+  input {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  .send {
+    font-size: 16px;
+    padding: 14px 18px;
+  }
+
+  /* Modals */
+  .modal-content {
+    width: 90%;
+    font-size: 15px;
   }
 }
 </style>
