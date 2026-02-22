@@ -28,19 +28,7 @@ body.light {
   --user: #e15f19;
   --input: #ffffff;
 }
-.docs-btn {
-  text-decoration: none;
-  font-size: 14px;
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  color: var(--text);
-  margin-right: 6px;
-}
 
-.docs-btn:hover {
-  background: var(--bot);
-}
 /* ================= BASE ================= */
 * { box-sizing: border-box; }
 body {
@@ -52,40 +40,6 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* ================= SIDEBAR ================= */
-.sidebar {
-  width: 240px;
-  border-right: 1px solid var(--border);
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-}
-.sidebar h3 {
-  margin: 0 0 12px;
-  font-size: 14px;
-}
-.chat-list button {
-  background: none;
-  border: none;
-  color: var(--text);
-  text-align: left;
-  padding: 8px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.chat-list button:hover {
-  background: var(--bot);
-}
-.clear-btn {
-  margin-top: auto;
-  background: #dc2626;
-  color: white;
-  border: none;
-  padding: 8px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
 /* ================= MAIN ================= */
 .main {
   flex: 1;
@@ -93,19 +47,38 @@ body {
   flex-direction: column;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 .header {
   height: 56px;
   padding: 0 12px;
   border-bottom: 1px solid var(--border);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   font-weight: 600;
 }
-.header-right button {
-  margin-left: 8px;
+
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.icon-btn {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 16px;
   cursor: pointer;
+}
+
+.docs-btn {
+  text-decoration: none;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  color: var(--text);
 }
 
 /* ================= CHAT ================= */
@@ -143,15 +116,14 @@ body {
   animation: bubblePop 0.18s ease-out;
 }
 
-/* BOT → LEFT */
+/* BOT */
 .bot {
   background: var(--bot);
   margin-right: auto;
-  text-align: left;
   border-bottom-left-radius: 4px;
 }
 
-/* USER → RIGHT */
+/* USER */
 .user {
   background: var(--user);
   color: #021b16;
@@ -160,7 +132,7 @@ body {
   border-bottom-right-radius: 4px;
 }
 
-/* Code blocks always left-aligned */
+/* Code blocks left aligned */
 .user pre,
 .user code {
   text-align: left;
@@ -206,7 +178,7 @@ input {
   font-weight: 600;
 }
 
-/* ================= PROFILE ================= */
+/* ================= MODALS ================= */
 .modal {
   position: fixed;
   inset: 0;
@@ -215,6 +187,7 @@ input {
   justify-content: center;
   align-items: center;
 }
+
 .modal-content {
   background: var(--bg);
   padding: 20px;
@@ -222,33 +195,22 @@ input {
   border: 1px solid var(--border);
   width: 320px;
 }
+
 small {
   word-break: break-all;
   color: #6b7280;
 }
 
-/* ================= MOBILE (TIGHT) ================= */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
-  .sidebar { display: none; }
-
   .messages {
-    padding: 16px 12px 84px;   /* 👈 mobile-safe */
+    padding: 16px 12px 84px;
   }
-
   .msg {
     max-width: 92%;
     font-size: 14px;
   }
-
   .inner {
-    max-width: 100%;
-  }
-
-  .header {
-    padding: 0 8px;
-  }
-
-  .input-inner {
     max-width: 100%;
   }
 }
@@ -256,31 +218,28 @@ small {
 </head>
 
 <body>
-
-<!-- SIDEBAR -->
-<div class="sidebar">
-  <h3>Conversations</h3>
-  <div class="chat-list">
-    <button>Current Chat</button>
-  </div>
-  <button class="clear-btn" onclick="clearChat()">Clear Chat</button>
-</div>
-
-<!-- MAIN -->
 <div class="main">
-  <div class="header">
-  🤖 Study Bot
-  <div>
-    <a href="/docs" target="_blank" class="docs-btn">📄 Fast API Docs</a>
-    <button onclick="toggleTheme()">🌗</button>
-    <button onclick="openProfile()">👤</button>
-  </div>
-</div>
 
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <button class="icon-btn close-btn" onclick="openClear()">❌</button>
+      🤖 Study Bot
+    </div>
+
+    <div class="header-right">
+      <a href="/docs" target="_blank" class="docs-btn">📄 Docs</a>
+      <button class="icon-btn" onclick="toggleTheme()">🌗</button>
+      <button class="icon-btn" onclick="openProfile()">👤</button>
+    </div>
+  </div>
+
+  <!-- CHAT -->
   <div class="messages">
     <div class="inner" id="messages"></div>
   </div>
 
+  <!-- INPUT -->
   <div class="input">
     <div class="input-inner">
       <input id="q" placeholder="Ask a study question…" />
@@ -294,9 +253,17 @@ small {
   <div class="modal-content">
     <h3>User Profile</h3>
     <p><b>User ID:</b></p>
-    <small id="uid"></small>
-    <br><br>
+    <small id="uid"></small><br><br>
     <button onclick="closeProfile()">Close</button>
+  </div>
+</div>
+
+<!-- CLEAR CHAT MODAL -->
+<div class="modal" id="clearModal">
+  <div class="modal-content">
+    <p>Clear all messages?</p><br>
+    <button onclick="confirmClear()">Clear</button>
+    <button onclick="closeClear()">Cancel</button>
   </div>
 </div>
 
@@ -319,6 +286,18 @@ function closeProfile() {
   document.getElementById("profileModal").style.display = "none";
 }
 
+/* CLEAR CHAT */
+function openClear() {
+  document.getElementById("clearModal").style.display = "flex";
+}
+function closeClear() {
+  document.getElementById("clearModal").style.display = "none";
+}
+function confirmClear() {
+  document.getElementById("messages").innerHTML = "";
+  closeClear();
+}
+
 /* CHAT */
 const messages = document.getElementById("messages");
 const input = document.getElementById("q");
@@ -335,10 +314,12 @@ function streamMarkdown(text) {
   const d = document.createElement("div");
   d.className = "msg bot";
   messages.appendChild(d);
+
   let i = 0;
   const t = setInterval(() => {
     d.innerHTML = marked.parse(text.slice(0, ++i));
     messages.scrollTop = messages.scrollHeight;
+
     if (i >= text.length) {
       clearInterval(t);
       d.querySelectorAll("pre code").forEach(b => hljs.highlightElement(b));
@@ -370,16 +351,10 @@ async function send() {
   }
 }
 
-/* CLEAR CHAT */
-function clearChat() {
-  messages.innerHTML = "";
-}
-
 /* ENTER TO SEND */
 input.addEventListener("keydown", e => {
   if (e.key === "Enter") send();
 });
 </script>
-
 </body>
 </html>
