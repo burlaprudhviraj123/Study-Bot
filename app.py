@@ -51,8 +51,7 @@ prompt = ChatPromptTemplate.from_messages(
             "- Only give long explanations if the user explicitly asks for detailed or step-by-step answers.\n"
             "- Use simple language suitable for students.\n"
             "- Use bullet points or short examples when helpful.\n"
-            "- Answer only study or education-related questions.\n"
-            "- Use conversation history only when relevant.\n"
+            "- Use conversation history when relevant.\n"
             "- Do not add unnecessary filler text."
         ),
         ("placeholder", "{history}"),
